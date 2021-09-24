@@ -1,5 +1,3 @@
-#TODO: ‘may not’ (but ‘may’ counts as keyword for a right, see under 2.a/)
-
 primary_duties=[
     'agree',
     'agrees',
@@ -18,13 +16,14 @@ primary_duties=[
     'responsibility',
     'obligation',
     'obligations',
+    'may not',
     'must not',
     'not permitted',
     'shall not',
     'shall NOT',
     'will not',
     'not eligible',
-    'nor shall you'
+    'nor shall you',
     'accept',
     'accepts'
 ]
@@ -77,4 +76,38 @@ secondary_duties=[
     'disclosed',
     'provide',
     'reimburse'
+]
+
+primary_rights=[
+    'right',
+    'entitled',
+    'entitle',
+    'offers',
+    'offer'
+]
+
+right_helpers=[
+    'shall',
+    'will',
+    'is to',
+    'to be',
+    'acknowledge',
+    'acknowledges',
+    'accept',
+    'accepts',
+    'understands'
+]
+
+secondary_rights=[
+    'paid',
+    'right',
+    'pay you',
+    'eligible',
+    'benefits',
+    'reimburse',
+    'receive',
+    'grant',
+    'issued',
+    'vest',
+    'reimbursable'
 ]
