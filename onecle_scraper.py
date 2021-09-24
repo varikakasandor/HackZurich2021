@@ -31,20 +31,25 @@ def clean_sentence(sentence):
     sentence=re.sub(' +', ' ', sentence)
     return f"{sentence}."
 
-def get_all_text(contract_url):
-    converter = html2text.HTML2Text()
-    converter.ignore_links = True
-    page = requests.get(contract_url)
-    all_text_from_page=converter.handle(page.text)
-    sentences=re.split('\.', all_text_from_page)
-    kept_sentences=[]
-    for sentence in sentences:
-        sentence=clean_sentence(sentence)
-        if is_right(sentence):
-            kept_sentences.append((sentence,'Right'))
-        elif is_duty(sentence):
-            kept_sentences.append((sentence,'Duty'))
-    return kept_sentences
+def get_all_text(contract_url, idx):
+    try:
+        converter = html2text.HTML2Text()
+        converter.ignore_links = True
+        page = requests.get(contract_url)
+        all_text_from_page=converter.handle(page.text)
+        sentences=re.split('\.', all_text_from_page)
+        kept_sentences=[]
+        for sentence in sentences:
+            sentence=clean_sentence(sentence)
+            if is_right(sentence):
+                kept_sentences.append((sentence,'Right'))
+            elif is_duty(sentence):
+                kept_sentences.append((sentence,'Duty'))
+        print(f"{idx} is done.")
+        return kept_sentences
+    except Exception as e: #Maybe it does not accept more connections
+        print(e)
+        return []
 
 
 if __name__=="__main__":
@@ -52,9 +57,9 @@ if __name__=="__main__":
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]][:mp.cpu_count()]
+    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]]
     with mp.Pool(mp.cpu_count()) as pool:
-        sentences_per_contract=pool.map(get_all_text, new_urls)
+        sentences_per_contract=pool.starmap(get_all_text, zip(new_urls,range(len(new_urls))))
 
     sentences = [item for sublist in sentences_per_contract for item in sublist]
     df=pd.DataFrame(sentences,columns=['Sentence','PredictedType'])
