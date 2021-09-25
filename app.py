@@ -1,7 +1,6 @@
 import os
 from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
 from werkzeug.utils import secure_filename
-from waitress import serve
 
 from helper import *
 
@@ -31,4 +30,4 @@ def upload_contract():
 
 
 if __name__=='__main__':
-    serve(app, host='127.0.0.1', port=8080)
+    app.run(debug=True)
