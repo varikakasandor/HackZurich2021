@@ -4,10 +4,14 @@ import multiprocess as mp
 import html2text
 import re
 import pandas as pd
+import random
+    
+
 
 from keywords import *
 
 base_url="https://contracts.onecle.com"
+neutral_p=0.1
 
 def is_right(sentence):
     if ('may' in sentence) and ('may not' not in sentence):
@@ -39,14 +43,19 @@ def get_all_text(contract_url, idx):
         all_text_from_page=converter.handle(page.text)
         sentences=re.split('\.', all_text_from_page)
         kept_sentences=[]
+        neutral_samples=[]
         for sentence in sentences:
             sentence=clean_sentence(sentence)
             if is_right(sentence):
                 kept_sentences.append((sentence,'Right'))
             elif is_duty(sentence):
                 kept_sentences.append((sentence,'Duty'))
+            else:
+                if random.random() < neutral_p:
+                    neutral_samples.append(sentence)
+
         print(f"{idx} is done.")
-        return kept_sentences
+        return kept_sentences, neutral_samples
     except Exception as e: #Maybe it does not accept more connections
         print(e)
         return []
@@ -61,6 +70,9 @@ if __name__=="__main__":
     with mp.Pool(mp.cpu_count()) as pool:
         sentences_per_contract=pool.starmap(get_all_text, zip(new_urls,range(len(new_urls))))
 
-    sentences = [item for sublist in sentences_per_contract for item in sublist]
-    df=pd.DataFrame(sentences,columns=['Sentence','PredictedType'])
-    df.to_csv('Sentences_to_annotate.csv', index=False)
+    positive_sentences = [item for positives, _ in sentences_per_contract for item in positives]
+    negative_sentences = [item for _, negatives in sentences_per_contract for item in negatives]
+    positive_df=pd.DataFrame(positive_sentences,columns=['Sentence','PredictedType'])
+    negative_df=pd.DataFrame(negative_sentences,columns=['Sentence'])
+    positive_df.to_csv('Sentences_to_annotate.csv', index=False)
+    negative_df.to_csv('Neutral_sentences.csv', index=False)
