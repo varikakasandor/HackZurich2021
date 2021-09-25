@@ -12,20 +12,21 @@
             </h1>
         </header>
         <br>
-        <center>
-            <div>
-                <h1>
-                    Please upload a pdf you would like to be annotated!
-                </h1>
-                <form class="upload" action="/process" method="POST">
+
+        <div>
+            <h1 id="instruction_text">
+                Please upload a pdf you would like to be annotated!
+            </h1>
+            <form class="upload" action="/process" method="POST">
+                <label id="custom-file-upload">
                     <input type="file" name="uploadFile" accept=".pdf" required />
                     <br/><br/>
                     <input type="submit" />
-                </form>
-            </div>
-        </center>
-        
-        
+                </label>
+                
+            </form>
+        </div>
+
 
     </body>
 </html>

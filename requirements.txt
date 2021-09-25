@@ -1,4 +1,5 @@
 click
+flask
 scrapy
 requests
 bs4
@@ -7,3 +8,4 @@ multiprocess
 pandas
 pdfminer.six
 gunicorn
+spacy
