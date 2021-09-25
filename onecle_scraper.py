@@ -37,6 +37,10 @@ def clean_sentence(sentence):
     sentence=re.sub(' +', ' ', sentence)
     return f"{sentence}."
 
+def get_main_part_of_sentence(sentence):
+    return sentence
+    #TODO
+
 def get_all_text(contract_url, idx):
     try:
         converter = html2text.HTML2Text()
@@ -45,12 +49,13 @@ def get_all_text(contract_url, idx):
         all_text_from_page=converter.handle(page.text)
         sentences=re.split('\.|\*|\||:', all_text_from_page)
         kept_sentences=[]
-        for sentence in sentences:
-            sentence=clean_sentence(sentence)
-            if is_right(sentence):
-                kept_sentences.append((sentence, contract_url, 'Right'))
-            elif is_duty(sentence):
-                kept_sentences.append((sentence, contract_url, 'Duty'))
+        for original_sentence in sentences:
+            full_sentence=clean_sentence(original_sentence)
+            main_part_of_sentence=get_main_part_of_sentence(full_sentence)
+            if is_right(main_part_of_sentence):
+                kept_sentences.append((main_part_of_sentence, full_sentence, contract_url, 'Right'))
+            elif is_duty(main_part_of_sentence):
+                kept_sentences.append((main_part_of_sentence, full_sentence, contract_url, 'Duty'))
 
         print(f"{idx} is done.")
         return kept_sentences,(contract_url,all_text_from_page)
@@ -64,12 +69,12 @@ if __name__=="__main__":
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]][:mp.cpu_count()]
+    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]]
     with mp.Pool(mp.cpu_count()) as pool:
         sentences_per_contract=pool.starmap(get_all_text, zip(new_urls,range(len(new_urls))))
 
     sentences = [item for l,_ in sentences_per_contract for item in l]
-    sentences_df=pd.DataFrame(sentences,columns=['Sentence','ID','PredictedType'])
+    sentences_df=pd.DataFrame(sentences,columns=['SentenceMain','SentenceFull','ID','PredictedType'])
     sentences_df.to_csv('Sentences_to_annotate.csv', index=False)
 
     full_texts = [item for _,item in sentences_per_contract if item is not None]
