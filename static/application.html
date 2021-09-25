@@ -13,8 +13,8 @@
                 </h1>
             </div>
             <div>
-                <form class="upload" action="/process" method="POST">
-                    <input type="file" name="uploadFile" accept=".pdf" required />
+                <form class="upload" action="/process" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="contract" accept=".pdf" required />
                     <br/><br/>
                     <input type="submit" />
                 </form>
