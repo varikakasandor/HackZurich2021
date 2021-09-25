@@ -1,4 +1,5 @@
 click
+flask
 scrapy
 requests
 bs4
