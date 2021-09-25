@@ -36,7 +36,8 @@ duty_helpers=[
     'acknowledges',
     'accept',
     'accepts',
-    'understands'
+    'understands',
+    'expectation'
 ]
 
 secondary_duties=[
@@ -75,15 +76,14 @@ secondary_duties=[
     'hold',
     'disclosed',
     'provide',
-    'reimburse'
+    'reimburse',
+    'salary'
 ]
 
 primary_rights=[
     'right',
     'entitled',
-    'entitle',
-    'offers',
-    'offer'
+    'entitle'
 ]
 
 right_helpers=[
@@ -94,8 +94,7 @@ right_helpers=[
     'acknowledge',
     'acknowledges',
     'accept',
-    'accepts',
-    'understands'
+    'accepts'
 ]
 
 secondary_rights=[
@@ -110,4 +109,6 @@ secondary_rights=[
     'issued',
     'vest',
     'reimbursable'
+    'bonus'
 ]
+

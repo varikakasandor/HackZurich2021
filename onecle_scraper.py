@@ -11,21 +11,23 @@ import random
 from keywords import *
 
 base_url="https://contracts.onecle.com"
-neutral_p=0.1
+
+def exactly_in(sentence, word):
+    return (f"{word} " in sentence) or (f"{word}." in sentence)
 
 def is_right(sentence):
-    if ('may' in sentence) and ('may not' not in sentence):
+    if exactly_in(sentence,'may') and exactly_in(sentence,'may not'):
         return True
-    if any(right in sentence for right in primary_rights):
+    if any(exactly_in(sentence,right) for right in primary_rights):
         return True
-    if any(right in sentence for right in secondary_rights) and any(helper in sentence for helper in right_helpers):
+    if any(exactly_in(sentence,right) for right in secondary_rights) and any(exactly_in(sentence,helper) for helper in right_helpers):
         return True
     return False
 
 def is_duty(sentence):
-    if any(duty in sentence for duty in primary_duties):
+    if any(exactly_in(sentence,duty) for duty in primary_duties):
         return True
-    if any(duty in sentence for duty in secondary_duties) and any(helper in sentence for helper in duty_helpers):
+    if any(exactly_in(sentence,duty) for duty in secondary_duties) and any(exactly_in(sentence,helper) for helper in duty_helpers):
         return True
     return False
 
@@ -41,24 +43,20 @@ def get_all_text(contract_url, idx):
         converter.ignore_links = True
         page = requests.get(contract_url)
         all_text_from_page=converter.handle(page.text)
-        sentences=re.split('\.', all_text_from_page)
+        sentences=re.split('\.|\*|\||:', all_text_from_page)
         kept_sentences=[]
-        neutral_samples=[]
         for sentence in sentences:
             sentence=clean_sentence(sentence)
             if is_right(sentence):
-                kept_sentences.append((sentence,'Right'))
+                kept_sentences.append((sentence, contract_url, 'Right'))
             elif is_duty(sentence):
-                kept_sentences.append((sentence,'Duty'))
-            else:
-                if random.random() < neutral_p:
-                    neutral_samples.append(sentence)
+                kept_sentences.append((sentence, contract_url, 'Duty'))
 
         print(f"{idx} is done.")
-        return kept_sentences, neutral_samples
+        return kept_sentences,(contract_url,all_text_from_page)
     except Exception as e: #Maybe it does not accept more connections
-        print(e)
-        return []
+        print(f"{idx} has thrown {e}")
+        return [], None
 
 
 if __name__=="__main__":
@@ -66,13 +64,14 @@ if __name__=="__main__":
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]]
+    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]][:mp.cpu_count()]
     with mp.Pool(mp.cpu_count()) as pool:
         sentences_per_contract=pool.starmap(get_all_text, zip(new_urls,range(len(new_urls))))
 
-    positive_sentences = [item for positives, _ in sentences_per_contract for item in positives]
-    negative_sentences = [item for _, negatives in sentences_per_contract for item in negatives]
-    positive_df=pd.DataFrame(positive_sentences,columns=['Sentence','PredictedType'])
-    negative_df=pd.DataFrame(negative_sentences,columns=['Sentence'])
-    positive_df.to_csv('Sentences_to_annotate.csv', index=False)
-    negative_df.to_csv('Neutral_sentences.csv', index=False)
+    sentences = [item for l,_ in sentences_per_contract for item in l]
+    sentences_df=pd.DataFrame(sentences,columns=['Sentence','ID','PredictedType'])
+    sentences_df.to_csv('Sentences_to_annotate.csv', index=False)
+
+    full_texts = [item for _,item in sentences_per_contract if item is not None]
+    full_texts_df=pd.DataFrame(full_texts,columns=['ID','FullText'])
+    full_texts_df.to_csv('Full_texts.csv', index=False)
