@@ -14,11 +14,12 @@ def home():
 
 @app.route("/team")
 def team_web():
-	return "<h1>This is our team! :) </h1>"
+	return "<h1>This is our team! :)</h1>"
 
 @app.route('/contracts/<name>')
 def download_contract(name):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+    return app.send_static_file('hardcoded_analysis.html')
+    #return send_from_directory(app.config["UPLOAD_FOLDER"], name)
 
 @app.route('/process', methods=['POST'])
 def upload_contract():

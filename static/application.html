@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" type= "text/css" href="static/style.css">
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -15,6 +14,14 @@
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" type= "text/css" href="/static/style.css">
+        <style>
+            body{
+                background-image: url('contract_photo.png');
+                background-size: cover;
+            }
+        </style>
+        <title>VirtualLawyer</title>
     </head>
     <body>
         <header id="main-header">
@@ -24,27 +31,24 @@
         </header>
         <br>
 
-        <div>
-            <h1 id="motivation_text">
+        <div id="user-input">
+            <h1 id="motivation-text">
                 Do you hate reading employment contracts? Are you fed up with the flood of text, and not really understanding your rights and duties before you sign it? We have the solution for you, that will change your life and make reading contracts way more fun!
             </h1>
             <br>
             <br>
             <center>
-                <h1 id="instruction_text">
+                <h1 id="instruction-text">
                     Upload your pdf contract here:
                 </h1>
                 <br>
-                <form class="upload" action="/process" method="POST", enctype="multipart/form-data">
-                    <label id="custom-file-upload">
-                        <input type="file" name="contract" accept=".pdf" required />
-                        <br/><br/>
-                        <input id="submit_button" class="btn btn-primary" type="submit" value="Submit">
-                    </label>
-                    
+                <form action="/process" method="POST", enctype="multipart/form-data">
+                    <input id="pdf-input" type="file" name="contract" accept=".pdf" required />
+                    <br/><br/>
+                    <button id="submit-button" class="btn btn-primary" type="submit"> Analyse! </button>
+                
                 </form>
             </center>
-            
         </div>
 
         <script
