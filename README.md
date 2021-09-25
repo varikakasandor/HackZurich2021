@@ -10,3 +10,6 @@ just run
 - pipeline/find_main_clauses.py
 Sample usage: as a library or as a standalone: `python pipeline/find_main_clause.py --text "The sentence is quite long, but I don't care."`
 - pipeline/pdf2text.py
+
+# deploy:
+`bash publish_web_app.sh` to deploy web app
