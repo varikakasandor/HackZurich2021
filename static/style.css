@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(145, 145, 255);
+    background-image: url('contract_photo.png');
     background-size: cover;
 }
 
@@ -7,31 +7,52 @@ body{
     text-align: left;
     background-image: url('image.png');
     background-repeat: no-repeat;
-    color:white;
+    color:rgb(47, 47, 219);
     background-size: cover;
     padding:50px;
-    font-size:40px;
+}
+
+#website-name{
+    font-size:70px;
     font-style:italic;
-    border-radius: 25px;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+#motivation_text{
+    color:white;
+    font-size:30px;
+    font-style:italic;
 }
 
 #instruction_text{
     color:white;
-    font-size:32px;
+    font-size:22px;
 }
 
 div {
-    width: 400px;
-    padding: 90px;
-    background-color:blue;
+    width: 1000px;
+    padding: 50px;
+    background-color:rgb(47, 47, 219);
     margin: 0;
-    border-radius: 25px;
     align-content: center;
     margin: auto;
+    border-radius:25px;
+    box-shadow: 2px 2px 4px #000000;
 }
 
+.hide_file {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+}
 
-
-input{
-    border-radius: 25px;
+#submit_button{
+    box-shadow: 2px 2px 4px #000000;
 }

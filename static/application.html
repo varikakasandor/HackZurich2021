@@ -4,29 +4,64 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type= "text/css" href="static/style.css">
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
     </head>
     <body>
         <header id="main-header">
-            <h1>
+            <h1 id="website-name">
                 VirtualLawyer
             </h1>
         </header>
         <br>
 
         <div>
-            <h1 id="instruction_text">
-                Please upload a pdf you would like to be annotated!
+            <h1 id="motivation_text">
+                Do you hate reading employment contracts? Are you fed up with the flood of text, and not really understanding your rights and duties before you sign it? We have the solution for you, that will change your life and make reading contracts way more fun!
             </h1>
-            <form class="upload" action="/process" method="POST", enctype="multipart/form-data">
-                <label id="custom-file-upload">
-                    <input type="file" name="contract" accept=".pdf" required />
-                    <br/><br/>
-                    <input type="submit" />
-                </label>
-                
-            </form>
+            <br>
+            <br>
+            <center>
+                <h1 id="instruction_text">
+                    Upload your pdf contract here:
+                </h1>
+                <br>
+                <form class="upload" action="/process" method="POST", enctype="multipart/form-data">
+                    <label id="custom-file-upload">
+                        <input type="file" name="contract" accept=".pdf" required />
+                        <br/><br/>
+                        <input id="submit_button" class="btn btn-primary" type="submit" value="Submit">
+                    </label>
+                    
+                </form>
+            </center>
+            
         </div>
 
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
 
     </body>
 </html>
