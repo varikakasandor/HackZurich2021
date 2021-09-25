@@ -1,4 +1,4 @@
 python3 -m venv venv
 . venv/bin/activate
-pip install -r requirements.txt
-
+pip3 install -r requirements.txt
+echo "INFO: Run setup_spacy.sh in order to get the en_core_web_trf model"
