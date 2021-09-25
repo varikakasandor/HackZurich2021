@@ -8,3 +8,4 @@ multiprocess
 pandas
 pdfminer.six
 gunicorn
+spacy
