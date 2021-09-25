@@ -14,7 +14,11 @@ def click_convert_pdf(input, output):
 
 def convert_pdf(input, output, mode=TXT):
     filename = (os.path.split(input)[-1]).replace('pdf', mode)
-    s = f'{PDF2TXT} --output_type {mode} --layoutmode exact "{input}" > "{os.path.join(output, filename)}"'
+    layout = '--layoutmode exact '
+    if mode == TXT:
+        layout = ''
+        mode = 'text'
+    s = f'{PDF2TXT} --output_type {mode} {layout}"{input}" > "{os.path.join(output, filename)}"'
     os.system(s)
     return filename
 
