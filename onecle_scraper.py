@@ -9,6 +9,7 @@ import random
 
 
 from keywords import *
+from pipeline import find_main_clause
 
 base_url="https://contracts.onecle.com"
 
@@ -37,9 +38,6 @@ def clean_sentence(sentence):
     sentence=re.sub(' +', ' ', sentence)
     return f"{sentence}."
 
-def get_main_part_of_sentence(sentence):
-    return sentence
-    #TODO
 
 def get_all_text(contract_url, idx):
     try:
@@ -51,7 +49,7 @@ def get_all_text(contract_url, idx):
         kept_sentences=[]
         for original_sentence in sentences:
             full_sentence=clean_sentence(original_sentence)
-            main_part_of_sentence=get_main_part_of_sentence(full_sentence)
+            main_part_of_sentence=find_main_clause(full_sentence)
             if is_right(main_part_of_sentence):
                 kept_sentences.append((main_part_of_sentence, full_sentence, contract_url, 'Right'))
             elif is_duty(main_part_of_sentence):
@@ -69,7 +67,7 @@ if __name__=="__main__":
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]]
+    new_urls=[f"{base_url}{a['href']}" for a in list(soup.find_all('a', href=True))[18:-45]][:8]
     with mp.Pool(mp.cpu_count()) as pool:
         sentences_per_contract=pool.starmap(get_all_text, zip(new_urls,range(len(new_urls))))
 
