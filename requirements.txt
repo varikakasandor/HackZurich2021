@@ -1,0 +1,9 @@
+click
+scrapy
+requests
+bs4
+multiprocess
+html2text
+pandas
+pdfminer.six
+
