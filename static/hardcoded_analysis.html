@@ -3,13 +3,24 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
         <link rel="stylesheet" type= "text/css" href="/static/style.css">
         <title>91/3</title>
     </head>
     <body>
 
         <div class="split left">
-            <div id="contract-format">
+            <div class="contract-format">
                 <p><strong>AMENDED AND RESTATED EMPLOYMENT AGREEMENT</strong></p>
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
@@ -137,65 +148,93 @@
         </div>
 
         <div class="split right">
-            <button onclick="showMonetaryRights()">Monetary rights</button>
-            <br>
-            <button onclick="showTerminationRights()">Termination rights</button>
-            <br>
-            <button onclick="showVacationRights()">Vacation rights</button>
-            <br>
-            <button onclick="showComplianceDuties()">Compliance duties</button>
-            <br>
-            <button onclick="showWaiverObligations()">Waiver obligations</button>
-            <br>
-            <button onclick="showResponsibilityDuties()">Responsibility duties</button>
-            <br><br><br>
+            <button class="btn btn-primary btn-lg btn-block" onclick="showMonetaryRights()">Monetary rights</button>
+            
+            <button class="btn btn-primary btn-lg btn-block" onclick="showTerminationRights()">Termination rights</button>
+            
+            <button class="btn btn-primary btn-lg btn-block" onclick="showVacationRights()">Vacation rights</button>
+            
+            <button class="btn btn-primary btn-lg btn-block" onclick="showComplianceDuties()">Compliance duties</button>
+            
+            <button class="btn btn-primary btn-lg btn-block" onclick="showWaiverObligations()">Waiver obligations</button>
+            
+            <button class="btn btn-primary btn-lg btn-block" onclick="showResponsibilityDuties()">Responsibility duties</button>
+            <br><br>
 
             <div id="filtered"></div>
             <script>
                 function showMonetaryRights() {
                     var related_parts=`
-                        <p>The Company shall pay Executive the minimum annual base salary required pursuant to applicable law.</p>
-                        <br>
-                        <p>Executive may be eligible for an annual bonus.</p>
-                        <br>
-                        <p>All authorized and approved work performed in excess of forty (40) hours in any one week shall be considered as overtime and shall be paid at the overtime rate of one and one-half times the employee’s straight time rate of pay.</p>
-                    `;
+                        <div class="contract-format">
+                            <p>The Company shall pay Executive the minimum annual base salary required pursuant to applicable law.</p>
+                            <br>
+                            <p>Executive may be eligible for an annual bonus.</p>
+                            <br>
+                            <p>All authorized and approved work performed in excess of forty (40) hours in any one week shall be considered as overtime and shall be paid at the overtime rate of one and one-half times the employee’s straight time rate of pay.</p>
+                        </div>
+                        `;
                     document.getElementById("filtered").innerHTML = related_parts;
                 }
                 function showTerminationRights() {
                     var related_parts=`
-                        <p>This means that Executive's employment relationship with the Company, and this Agreement, may be terminated by either party, for any reason, at any time, with or without notice and with or without Cause (as defined below).</p>
-                    `;
+                        <div class="contract-format">
+                            <p>This means that Executive's employment relationship with the Company, and this Agreement, may be terminated by either party, for any reason, at any time, with or without notice and with or without Cause (as defined below).</p>
+                        </div>
+                        `;
                     document.getElementById("filtered").innerHTML = related_parts;
                 }
                 function showVacationRights() {
                     var related_parts=`
-                        <p>Notwithstanding the foregoing, Executive shall be entitled to vacation at a rate of at least twenty-two (22) days' paid vacation per year.</p>
-                    `;
+                        <div class="contract-format">
+                            <p>Notwithstanding the foregoing, Executive shall be entitled to vacation at a rate of at least twenty-two (22) days' paid vacation per year.</p>
+                        </div>
+                        `;
                     document.getElementById("filtered").innerHTML = related_parts;
                 }
                 function showComplianceDuties() {
                     var related_parts=`
-                        <p>Executive agrees to comply with all Company policies.</p>
-                        <br>
-                        <p>Executive (or Executive's estate, if applicable) must execute and return the Separation Agreement on or before the date specified by the Company, which will in no event be later than 52 days after the date of Separation (the "Release Deadline").</p>
-                    `;
+                        <div class="contract-format">
+                            <p>Executive agrees to comply with all Company policies.</p>
+                            <br>
+                            <p>Executive (or Executive's estate, if applicable) must execute and return the Separation Agreement on or before the date specified by the Company, which will in no event be later than 52 days after the date of Separation (the "Release Deadline").</p>
+                        </div>
+                        `;
                     document.getElementById("filtered").innerHTML = related_parts;
                 }
                 function showWaiverObligations() {
                     var related_parts=`
-                        <p>If overtime operations however are required in the judgment of Employer as a result of delays caused by the Employee, then the Employee agrees to perform overtime operations for no additional compensation.</p>
-                    `;
+                        <div class="contract-format">
+                            <p>If overtime operations however are required in the judgment of Employer as a result of delays caused by the Employee, then the Employee agrees to perform overtime operations for no additional compensation.</p>
+                        </div>
+                        `;
                     document.getElementById("filtered").innerHTML = related_parts;
                 }
                 function showResponsibilityDuties() {
                     var related_parts=`
-                        <p>Executive shall be solely responsible for the payment of any taxes and penalties incurred under Section 409A of the Code.</p>
-                    `;
+                        <div class="contract-format">
+                            <p>Executive shall be solely responsible for the payment of any taxes and penalties incurred under Section 409A of the Code.</p>
+                        </div>
+                        `;
                     document.getElementById("filtered").innerHTML = related_parts;
                 }
             </script>
         </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
 
     </body>
 </html>
