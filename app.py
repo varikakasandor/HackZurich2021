@@ -4,9 +4,6 @@ from flask import Flask, flash, request, redirect, url_for, render_template, sen
 from werkzeug.utils import secure_filename
 
 
-from helper import *
-
-
 app = Flask(__name__,static_folder='static')
 app.config['UPLOAD_FOLDER'] = 'uploaded_contracts'
 
