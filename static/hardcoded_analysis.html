@@ -137,8 +137,64 @@
         </div>
 
         <div class="split right">
-            <h2>EXTENSIONS</h2>
-            <p>EXTENSIONS</p>
+            <button onclick="showMonetaryRights()">Monetary rights</button>
+            <br>
+            <button onclick="showTerminationRights()">Termination rights</button>
+            <br>
+            <button onclick="showVacationRights()">Vacation rights</button>
+            <br>
+            <button onclick="showComplianceDuties()">Compliance duties</button>
+            <br>
+            <button onclick="showWaiverObligations()">Waiver obligations</button>
+            <br>
+            <button onclick="showResponsibilityDuties()">Responsibility duties</button>
+            <br><br><br>
+
+            <div id="filtered"></div>
+            <script>
+                function showMonetaryRights() {
+                    var related_parts=`
+                        <p>The Company shall pay Executive the minimum annual base salary required pursuant to applicable law.</p>
+                        <br>
+                        <p>Executive may be eligible for an annual bonus.</p>
+                        <br>
+                        <p>All authorized and approved work performed in excess of forty (40) hours in any one week shall be considered as overtime and shall be paid at the overtime rate of one and one-half times the employee’s straight time rate of pay.</p>
+                    `;
+                    document.getElementById("filtered").innerHTML = related_parts;
+                }
+                function showTerminationRights() {
+                    var related_parts=`
+                        <p>This means that Executive's employment relationship with the Company, and this Agreement, may be terminated by either party, for any reason, at any time, with or without notice and with or without Cause (as defined below).</p>
+                    `;
+                    document.getElementById("filtered").innerHTML = related_parts;
+                }
+                function showVacationRights() {
+                    var related_parts=`
+                        <p>Notwithstanding the foregoing, Executive shall be entitled to vacation at a rate of at least twenty-two (22) days' paid vacation per year.</p>
+                    `;
+                    document.getElementById("filtered").innerHTML = related_parts;
+                }
+                function showComplianceDuties() {
+                    var related_parts=`
+                        <p>Executive agrees to comply with all Company policies.</p>
+                        <br>
+                        <p>Executive (or Executive's estate, if applicable) must execute and return the Separation Agreement on or before the date specified by the Company, which will in no event be later than 52 days after the date of Separation (the "Release Deadline").</p>
+                    `;
+                    document.getElementById("filtered").innerHTML = related_parts;
+                }
+                function showWaiverObligations() {
+                    var related_parts=`
+                        <p>If overtime operations however are required in the judgment of Employer as a result of delays caused by the Employee, then the Employee agrees to perform overtime operations for no additional compensation.</p>
+                    `;
+                    document.getElementById("filtered").innerHTML = related_parts;
+                }
+                function showResponsibilityDuties() {
+                    var related_parts=`
+                        <p>Executive shall be solely responsible for the payment of any taxes and penalties incurred under Section 409A of the Code.</p>
+                    `;
+                    document.getElementById("filtered").innerHTML = related_parts;
+                }
+            </script>
         </div>
 
     </body>

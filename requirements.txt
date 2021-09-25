@@ -5,7 +5,7 @@ requests
 bs4
 html2text
 multiprocess
+numpy
 pandas
 pdfminer.six
 gunicorn
-spacy
