@@ -13,9 +13,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 COPY ./nginx.conf /etc/nginx/sites-enabled/default
-
-# ENTRYPOINT [ "python" ]
-
-# CMD [ "app.py" ]
+EXPOSE 8000 2222
 CMD gunicorn --bind=0.0.0.0 --timeout 600 app:app
 # CMD service nginx start && uwsgi -s /tmp/uwsgi.sock --chmod-socket=666 --manage-script-name --mount /=app:app
