@@ -6,13 +6,17 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <header id="main-header">
+            <h1>
+                VirtualLawyer
+            </h1>
+        </header>
+        <br>
         <center>
             <div>
                 <h1>
                     Please upload a pdf you would like to be annotated!
                 </h1>
-            </div>
-            <div>
                 <form class="upload" action="/process" method="POST">
                     <input type="file" name="uploadFile" accept=".pdf" required />
                     <br/><br/>

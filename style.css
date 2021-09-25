@@ -1,6 +1,28 @@
 body{
-    background-image: url('Legal-Drafting.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: blue;
     background-size: cover;
+}
+
+#main-header{
+    text-align: left;
+    background-image: url('image.png');
+    background-repeat: no-repeat;
+    color:white;
+    background-size: cover;
+    padding:50px;
+    font-size:40px;
+    font-style:italic;
+    border-radius: 25px;
+}
+
+div {
+    width: 600px;
+    padding: 90px;
+    background-color:rgb(153, 153, 255);
+    margin: 0;
+    border-radius: 25px;
+}
+
+input{
+    border-radius: 25px;
 }
