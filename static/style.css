@@ -44,6 +44,15 @@
     border-radius: 25px;
 }
 
+#contract-format{
+    border-radius: 35px;
+    padding: 40px;
+    border-color: blue;
+    border-style: solid;
+    border-width: 7px;
+    /*rgb(191, 217, 255)*/
+}
+
 .split {
     height: 100%;
     width: 50%;
