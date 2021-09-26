@@ -1,15 +1,16 @@
 import json
+import os
 import torch
 from transformers import RobertaTokenizer, RobertaForQuestionAnswering
 
-AZURE_MODEL_DIR = "AZURE_MODEL_DIR"
-MODEL_FILENAME = "pytorch_model.bin"
+AZUREML_MODEL_DIR = "AZUREML_MODEL_DIR"
 ROBERTA_BASE = 'roberta-base'
 
 
 def init():
     global model, tokenizer
-    model_path = '/Users/marcinbodych/Workspace/hackzurich/data/roberta-base'
+    model_path = os.path.join(os.getenv(AZUREML_MODEL_DIR), ROBERTA_BASE)
+
     model = RobertaForQuestionAnswering.from_pretrained(model_path)
     tokenizer = RobertaTokenizer.from_pretrained(model_path)
 
@@ -46,7 +47,7 @@ def run(data):
             answer = "".join(tokens[answer_start:answer_end + 1])
             print("\nQuestion:\n{}".format(question.capitalize()))
             print("\nAnswer:\n{}.".format(answer.capitalize()))
-            final_answers.append({'answer': answer, 'start': answer_start, 'end': answer_end})
+            final_answers.append({'answer': answer})  # , 'start': answer_start, 'end': answer_end})
         else:
             print("I am unable to find the answer to this question. Can you please ask another question?")
     return final_answers
