@@ -32,9 +32,10 @@ def call_main_model(name):
     with open(txt_path, 'r') as f:
         data = ''.join(f.readlines())
     dummy_data = {'data': data}
-    response = requests.post(url=ML_MODEL1_URL, data=dummy_data)
-    print(response)
-    return response.json()
+    response = requests.post(url=ML_MODEL1_URL, json=dummy_data)
+    if response.status_code == 200:
+        return response.json()
+    return ''
 
 
 @app.route('/secondary_model/<query>')
@@ -63,11 +64,8 @@ def upload_contract():
     filename = secure_filename(contract.filename)
     input_filename = os.path.join(app.config[UPLOAD_FOLDER], filename)
     contract.save(input_filename)
-    print('a')
     model_input_text = pdf2text.convert_pdf(input=input_filename, output=app.config[UPLOAD_FOLDER], mode=pdf2text.TXT)
-    print('b')
     output_filename = pdf2text.convert_pdf(input=input_filename, output=app.config[UPLOAD_FOLDER], mode=pdf2text.HTML)
-    print('c')
     return redirect(url_for('download_contract', name=output_filename))  # TODO: replace by calling the ML model and then returning the analyzed document
 
 
