@@ -12,4 +12,5 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 EXPOSE 8000 2222
-CMD gunicorn --bind=0.0.0.0 --timeout 600 app:app
+# TODO: research how to pass the api key securely :)
+CMD gunicorn --bind=0.0.0.0 --timeout 600 --env API_KEY=03X1PDdf3nTualFvT5V6owA7P8lPsRsD app:app

@@ -16,16 +16,7 @@ dependencies:
   - horovod==0.21.3
   - tensorboard==1.14.0
   - future==0.17.1
-  - click
-  - flask
-  - scrapy
-  - requests
-  - bs4
-  - html2text
-  - multiprocess
   - pandas
   - numpy
-  - pdfminer.six
-  - gunicorn
   - transformers
 name: azureml_64a0da4ce7ed21dd65f5a817ce29a741

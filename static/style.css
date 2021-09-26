@@ -13,6 +13,12 @@
     text-shadow: 2px 2px 4px #000000;
 }
 
+span[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: -100%;
+  left: 0;
+}
 
 #motivation-text{
     color:white;

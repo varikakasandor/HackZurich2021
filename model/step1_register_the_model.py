@@ -12,7 +12,7 @@ subscription_id = data[SUBSCRIPTION_ID]
 resource_group = data[RESOURCE_GROUP]
 workspace_name = data[WORKSPACE_NAME]
 # TODO: hardcoded path for now
-model_path = '/Users/marcinbodych/Workspace/hackzurich/data/roberta-base/pytorch_model.bin'
+model_path = '/Users/marcinbodych/Workspace/hackzurich/data/roberta-base/'
 ws = Workspace.from_config()
 print('Registering the model...')
 model = Model.register(ws, model_name="roberta-base", model_path=model_path)
