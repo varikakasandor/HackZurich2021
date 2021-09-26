@@ -1,0 +1,31 @@
+channels:
+- conda-forge
+dependencies:
+- python=3.6.2
+- pip=20.2.4
+- pip:
+  - azureml-core==1.34.0
+  - azureml-defaults==1.34.0
+  - azureml-telemetry==1.34.0
+  - azureml-train-restclients-hyperdrive==1.34.0
+  - azureml-train-core==1.34.0
+  - cmake==3.18.2
+  - torch==1.6.0
+  - torchvision==0.5.0
+  - mkl==2018.0.3
+  - horovod==0.21.3
+  - tensorboard==1.14.0
+  - future==0.17.1
+  - click
+  - flask
+  - scrapy
+  - requests
+  - bs4
+  - html2text
+  - multiprocess
+  - pandas
+  - numpy
+  - pdfminer.six
+  - gunicorn
+  - transformers
+name: azureml_64a0da4ce7ed21dd65f5a817ce29a741
