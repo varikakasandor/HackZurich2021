@@ -25,7 +25,7 @@ def upload_contract():
     contract = request.files['contract']
     filename = secure_filename(contract.filename)
     contract.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    time.sleep(3)
+    time.sleep(7)
     return redirect(url_for('download_contract', name=filename)) #TODO: replace by calling the ML model and then returning the analyzed document
 
 
