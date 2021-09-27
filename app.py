@@ -41,6 +41,20 @@ def call_main_model(name):
     return ''
 
 
+@app.route('/secondary_model_form')
+def secondary_model_form():
+    return app.send_static_file('query_secondary_model.html')
+
+
+@app.route('/secondary_model_form_output', methods=['POST'])
+def secondary_model_form_output():
+    print(request.form)
+    comment = request.form['comment']
+    print(comment)
+    x = call_secondary_model(query=comment)
+    return render_template('query_output.html', query=x['query'], reply=x['reply'])
+
+
 @app.route('/secondary_model/<query>')
 def call_secondary_model(query):
     prompt = "My second grader asked me what this passage means:\n"\
